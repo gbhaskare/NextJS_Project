@@ -23,7 +23,7 @@ export default function HomePage() {
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link className="button-primary" href="/products">Shop all products</Link>
-              <Link className="button-secondary border-slate-600 bg-transparent text-white hover:border-blue-400 hover:bg-slate-800" href="/about">Why TechStore</Link>
+              <Link className="button-secondary border-slate-600 bg-transparent text-white hover:border-blue-400 hover:bg-slate-800" href="/why-techstore">Why TechStore</Link>
             </div>
           </div>
           <div aria-hidden="true" className="grid aspect-square max-w-md place-items-center justify-self-center rounded-[2.5rem] border border-slate-700 bg-gradient-to-br from-blue-500/30 via-indigo-500/20 to-slate-900 shadow-2xl">
