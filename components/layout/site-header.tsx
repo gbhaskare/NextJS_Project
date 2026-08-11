@@ -5,9 +5,12 @@ import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
 import { useCart } from "@/context/cart-context";
 
+const productDetailHref = "/products/detail";
+
 const navigation = [
   { href: "/", label: "Home" },
-  { href: "/products", label: "Shop" },
+  { href: "/products", label: "Products List" },
+  { href: productDetailHref, label: "Product Detail" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
@@ -16,6 +19,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const { itemCount } = useCart();
   const { name, isGuest } = useAuth();
+  const isProductDetailPage = pathname === "/products/detail" || (pathname.startsWith("/products/") && pathname !== "/products");
 
   return (
     <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
@@ -24,16 +28,20 @@ export function SiteHeader() {
           Tech<span className="text-blue-600">Store</span>
         </Link>
         <nav aria-label="Primary navigation" className="order-3 flex w-full items-center gap-5 text-sm font-semibold text-slate-600 sm:order-none sm:w-auto">
-          {navigation.map((item) => (
-            <Link
-              aria-current={pathname === item.href ? "page" : undefined}
-              className={pathname === item.href ? "text-blue-700" : "hover:text-slate-950"}
-              href={item.href}
-              key={item.href}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const isCurrentPage = item.href === pathname || (item.href === productDetailHref && isProductDetailPage);
+
+            return (
+              <Link
+                aria-current={isCurrentPage ? "page" : undefined}
+                className={isCurrentPage ? "text-blue-700" : "hover:text-slate-950"}
+                href={item.href}
+                key={item.href}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
         <div className="flex items-center gap-4 text-sm font-semibold">
           <Link className="text-slate-600 hover:text-slate-950" href="/login">
