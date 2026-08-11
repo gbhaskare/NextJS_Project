@@ -22,7 +22,7 @@ export default function HomePage() {
               Explore considered electronics for focused work, better listening, and a more connected home.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
-              <Link className="button-primary" href="/products">Shop all products</Link>
+              <Link className="button-primary" href="/products">Show all products</Link>
               <Link className="button-secondary border-slate-600 bg-transparent text-white hover:border-blue-400 hover:bg-slate-800" href="/why-techstore">Why TechStore</Link>
             </div>
           </div>
