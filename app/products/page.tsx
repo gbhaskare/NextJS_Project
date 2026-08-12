@@ -3,17 +3,18 @@
 import { useMemo, useState } from "react";
 import { ProductCard } from "@/components/product/product-card";
 import { products } from "@/data/products";
-import { productCategories } from "@/types/product";
+import { colors, productCategories } from "@/types/product";
 
 export default function ProductsPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
+  const [color, setColor] = useState("All");
   const [maxPrice, setMaxPrice] = useState("2000");
 
   const visibleProducts = useMemo(() => products.filter((product) => {
     const matchesQuery = `${product.name} ${product.category}`.toLowerCase().includes(query.toLowerCase());
-    return matchesQuery && (category === "All" || product.category === category) && product.price <= Number(maxPrice);
-  }), [category, maxPrice, query]);
+    return matchesQuery && (category === "All" || product.category === category) && (color === "All" || product.color === color) && product.price <= Number(maxPrice);
+  }), [category, color, maxPrice, query]);
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
@@ -34,6 +35,14 @@ export default function ProductsPage() {
             {productCategories.map((item) => <option key={item}>{item}</option>)}
           </select>
         </label>
+          <label className="grid gap-2 text-sm font-bold text-slate-700">
+          Colors
+          <select className="field" onChange={(event) => setColor(event.target.value)} value={category}>
+            <option>All</option>
+            {colors.map((item) => <option key={item}>{item}</option>)}
+          </select>
+        </label>
+  
         <label className="grid gap-2 text-sm font-bold text-slate-700">
           Maximum price: ${Number(maxPrice).toLocaleString()}
           <input aria-label="Maximum price" max="2000" min="100" onChange={(event) => setMaxPrice(event.target.value)} step="50" type="range" value={maxPrice} />

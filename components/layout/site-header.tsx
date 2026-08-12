@@ -48,6 +48,7 @@ export function SiteHeader() {
             {name ? `Hi, ${name}` : isGuest ? "Guest" : "Log in"}
           </Link>
           <Link aria-label={`Cart, ${itemCount} items`} className="rounded-full bg-slate-950 px-3 py-2 text-white hover:bg-blue-700" href="/cart">
+          
             Cart ({itemCount})
           </Link>
         </div>
